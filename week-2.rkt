@@ -104,3 +104,39 @@
   (lambda (a b)
     (cond ((zero? a) 0)
           (else (add b (multi (sub1 a) b))))))
+
+(define tup+
+  (lambda (tupa tupb)
+    (cond ((null? tupa) tupb)
+          ((null? tupb) tupa)
+          (else (cons (add (car tupa) (car tupb)) (tup+ (cdr tupa) (cdr tupb)))))))
+
+(define greater-than
+  (lambda (n m)
+    (cond ((zero? n) #f)
+          ((zero? m) #t) (else (greater-than (sub1 n) (sub1 m))))))
+
+(define less-than
+  (lambda (n m)
+    (cond ((zero? n) #t)
+          ((zero? m) #f) (else (less-than (sub1 n) (sub1 m))))))
+
+(define equal
+  (lambda (a b)
+    (cond
+      ((greater-than a b) #f)
+      ((less-than a b) #f)
+      (else #t))))
+
+(define length
+  (lambda (lat)
+    (cond ((null? lat) 0)
+          (else (add 1 (length (cdr lat)))))))
+
+(define pick
+  (lambda (n l)
+    (cond
+      ((zero? n) (car l))
+      (else (pick (sub1 n) (cdr l))))))
+
+
